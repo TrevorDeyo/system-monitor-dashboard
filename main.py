@@ -5,15 +5,30 @@ import psutil
 
 app = FastAPI()
 
-app.mount("/static", StaticFiles(directory="static"), name='static')
+# handles PyInstaller pathing
+import os
+import sys
+
+def resource_path(relative_path: str):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        base_path = sys._MEIPASS  # PyInstaller temp folder
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+static_dir = resource_path("static")
+
+app.mount("/static", StaticFiles(directory=static_dir), name="static")
+
 
 @app.get("/favicon.ico")
 def favicon():
-    return FileResponse("static/favicon.png")
+    return FileResponse(resource_path("static/favicon.png"))
 
 @app.get("/")
 def read_root():
-    return FileResponse("static/index.html")
+    return FileResponse(resource_path("static/index.html"))
 
 @app.get("/stats")
 def get_stats():
