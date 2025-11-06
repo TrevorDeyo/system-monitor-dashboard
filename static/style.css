@@ -1,51 +1,88 @@
+/* === CYBERPUNK SYSTEM MONITOR THEME === */
+
 body {
-    font-family: Arial, sans-serif;
-    background: #1e1e1e;
-    color: #ddd;
-    text-align: center;
-    padding: 20px;
+  background: #050510;
+  color: #e9faff;
+  font-family: "Consolas", monospace;
+  text-align: center;
+  padding: 20px;
 }
+
+/* Title glow */
+h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+  color: #5dfdff;
+  text-shadow:
+    0 0 6px #33d5ff,
+    0 0 12px #33d5ff,
+    0 0 24px #29cfff,
+    0 0 48px #00baff;
+}
+
+/* Stats Display */
+#stats {
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #affdff;
+  text-shadow: 0 0 10px #00d9ff;
+}
+
+/* Chart Glow */
+canvas {
+  margin-bottom: 25px;
+  filter: drop-shadow(0 0 14px #00ffee);
+}
+
+/* Table Layout */
 table {
-    margin: 20px auto;
-    border-collapse: collapse;
-    width: 80%;
+  width: 85%;
+  margin: auto;
+  border-collapse: collapse;
+  background: rgba(0, 10, 20, 0.6);
+  backdrop-filter: blur(4px);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 0 22px rgba(0, 255, 255, 0.35);
 }
+
 th, td {
-    border: 1px solid #444;
-    padding: 8px 12px;
+  padding: 10px 12px;
 }
+
+/* Header Glow + Sort Indication */
 th {
-    background: #333;
-}
-tr:nth-child(even) {
-    background: #2a2a2a;
-}
-td, th {
-  text-align: right;
-}
-th:first-child, td:first-child,
-th:nth-child(2), td:nth-child(2) {
-  text-align: left;
-}
-th {
-  position: relative;
+  background: #06121c;
   cursor: pointer;
-  color: #9beaff;
-  padding-right: 15px;
+  color: #86f2ff;
+  text-shadow: 0 0 8px #00eaff;
+  position: relative;
 }
 
 th:hover {
   color: #ffffff;
-  text-shadow: 0 0 8px #00eaff;
+  text-shadow: 0 0 12px #00ffaa;
 }
 
-/* Sorting arrows */
-th.sort-asc::after {
-  content: " ▲";
-  color: #4de3ff;
+th.sort-asc::after { content: " ▲"; color: #5dfdff; }
+th.sort-desc::after { content: " ▼"; color: #5dfdff; }
+
+/* Row Glow */
+tr {
+  transition: background 0.2s, color 0.2s;
 }
 
-th.sort-desc::after {
-  content: " ▼";
-  color: #4de3ff;
+tr:hover {
+  background: rgba(0, 255, 255, 0.1);
+}
+
+/* Glow for high usage values */
+td.cpu-high {
+  color: #ff5e7d;
+  text-shadow: 0 0 10px #ff2965;
+}
+
+td.memory-high {
+  color: #ffc85e;
+  text-shadow: 0 0 10px #ffb74a;
 }

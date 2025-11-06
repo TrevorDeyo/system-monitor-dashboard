@@ -104,14 +104,17 @@ async function fetchProcesses() {
   });
 
   const tbody = document.querySelector("#process-table tbody");
-  tbody.innerHTML = data.map(
-    p => `<tr>
+tbody.innerHTML = data.map(p => {
+  const cpuClass = p.cpu_percent > 30 ? "cpu-high" : "";
+  const memClass = p.memory_percent > 20 ? "memory-high" : "";
+  return `
+    <tr>
       <td>${p.pid}</td>
       <td>${p.name}</td>
-      <td>${p.cpu_percent}</td>
-      <td>${p.memory_percent}</td>
-    </tr>`
-  ).join("");
+      <td class="${cpuClass}">${p.cpu_percent}</td>
+      <td class="${memClass}">${p.memory_percent}</td>
+    </tr>`;
+}).join("");
 }
 
 function refresh() {
