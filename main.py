@@ -29,6 +29,11 @@ def get_top_processes(limit: int = 10, sort_by: str = "cpu"):
     for proc in psutil.process_iter(['pid', 'name', 'cpu_percent', 'memory_percent']):
         try:
             info = proc.info
+
+            # ✅ Skip System Idle Process
+            if info.get('pid') == 0 or info.get('name') == "System Idle Process":
+                continue
+
             # Normalize CPU usage like task manager
             raw_cpu = info.get('cpu_percent') or 0.0
             info['cpu_percent'] = round(raw_cpu / cpu_count, 1)
