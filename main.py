@@ -7,6 +7,10 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory="static"), name='static')
 
+@app.get("/favicon.ico")
+def favicon():
+    return FileResponse("static/favicon.png")
+
 @app.get("/")
 def read_root():
     return FileResponse("static/index.html")
