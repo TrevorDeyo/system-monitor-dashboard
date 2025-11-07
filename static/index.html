@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>System Monitor Dashboard</title>
-        <link rel="stylesheet" href="/static/style.css" />
-        <link rel="icon" href="/static/favicon.png" type="image/png"/>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    </head>
-    <body>
-        <h1>System Monitor</h1>
-        <div id="stats"></div>
-        <canvas id="chart"></canvas>
-        <table id="process-table">
-            <thead>
-                <tr>
-                    <th data-column="pid" onclick="sortBy('pid')">PID</th>
-                    <th data-column="name" onclick="sortBy('name')">Name</th>
-                    <th data-column="cpu_percent" onclick="sortBy('cpu_percent')">CPU%</th>
-                    <th data-column="memory_percent" onclick="sortBy('memory_percent')">Memory%</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+<head>
+    <meta charset="UTF-8">
 
-        <script src="/static/script.js"></script>
-    </body>
+    <!-- Page Title (Browser Tab) -->
+    <title>System Monitor Dashboard</title>
+
+    <!-- Main UI Stylesheet -->
+    <link rel="stylesheet" href="/static/style.css" />
+
+    <!-- Browser Tab Icon -->
+    <link rel="icon" href="/static/favicon.png" type="image/png"/>
+
+    <!-- Chart.js for Real-Time CPU & Memory Graph -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Application Header -->
+    <h1>System Monitor</h1>
+
+    <!-- Real-time CPU / Memory / Process Count Display -->
+    <div id="stats"></div>
+
+    <!-- Real-Time Graph -->
+    <canvas id="chart"></canvas>
+
+    <!-- Process Table -->
+    <table id="process-table">
+        <thead>
+            <!--
+                Table is sortable.
+                Each <th> has a data-column attribute referencing
+                the field name returned by /processes in main.py
+            -->
+            <tr>
+                <th data-column="pid" onclick="sortBy('pid')">PID</th>
+                <th data-column="name" onclick="sortBy('name')">Name</th>
+                <th data-column="cpu_percent" onclick="sortBy('cpu_percent')">CPU%</th>
+                <th data-column="memory_percent" onclick="sortBy('memory_percent')">Memory%</th>
+            </tr>
+        </thead>
+
+        <!-- Table Body is filled dynamically by script.js -->
+        <tbody></tbody>
+    </table>
+
+    <!-- Application Logic (fetching stats, table updates, chart updates) -->
+    <script src="/static/script.js"></script>
+</body>
 </html>

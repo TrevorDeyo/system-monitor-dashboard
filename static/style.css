@@ -1,5 +1,6 @@
-/* === CYBERPUNK SYSTEM MONITOR THEME === */
-
+/* =========================================================
+   Global Layout / Page Styling
+   ========================================================= */
 body {
   background: #050510;
   color: #e9faff;
@@ -8,7 +9,7 @@ body {
   padding: 20px;
 }
 
-/* Title glow */
+/* Title Glow */
 h1 {
   font-size: 42px;
   margin-bottom: 20px;
@@ -20,7 +21,7 @@ h1 {
     0 0 48px #00baff;
 }
 
-/* Stats Display */
+/* System Stats Display */
 #stats {
   font-size: 18px;
   margin-bottom: 20px;
@@ -28,13 +29,17 @@ h1 {
   text-shadow: 0 0 10px #00d9ff;
 }
 
-/* Chart Glow */
+/* =========================================================
+   Chart Styling
+   ========================================================= */
 canvas {
   margin-bottom: 25px;
   filter: drop-shadow(0 0 14px #00ffee);
 }
 
-/* Table Layout */
+/* =========================================================
+   Process Table Layout
+   ========================================================= */
 table {
   width: 85%;
   margin: auto;
@@ -50,7 +55,7 @@ th, td {
   padding: 10px 12px;
 }
 
-/* Header Glow + Sort Indication */
+/* Table Headers (Sortable) */
 th {
   background: #06121c;
   cursor: pointer;
@@ -64,10 +69,20 @@ th:hover {
   text-shadow: 0 0 12px #00ffaa;
 }
 
-th.sort-asc::after { content: " ▲"; color: #5dfdff; }
-th.sort-desc::after { content: " ▼"; color: #5dfdff; }
+/* Sort Direction Arrows */
+th.sort-asc::after {
+  content: " ▲";
+  color: #5dfdff;
+}
 
-/* Row Glow */
+th.sort-desc::after {
+  content: " ▼";
+  color: #5dfdff;
+}
+
+/* =========================================================
+   Table Row Interaction
+   ========================================================= */
 tr {
   transition: background 0.2s, color 0.2s;
 }
@@ -76,7 +91,9 @@ tr:hover {
   background: rgba(0, 255, 255, 0.1);
 }
 
-/* Glow for high usage values */
+/* =========================================================
+   Usage Highlighting (Dynamic via script.js)
+   ========================================================= */
 td.cpu-high {
   color: #ff5e7d;
   text-shadow: 0 0 10px #ff2965;
